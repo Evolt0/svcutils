@@ -30,6 +30,19 @@ func ConvertInterfaceToStringSlice(obj interface{}) (list []string) {
 	return list
 }
 
+func ConvertInterfaceToMap(src interface{}) (map[string]interface{}, error) {
+	marshal, err := json.Marshal(src)
+	if err != nil {
+		return nil, err
+	}
+	srcMap := make(map[string]interface{})
+	err = json.Unmarshal(marshal, &srcMap)
+	if err != nil {
+		return nil, err
+	}
+	return srcMap, nil
+}
+
 func StringSliceContainsAny(s []string, sub string) error {
 	for _, value := range s {
 		if value == sub {
