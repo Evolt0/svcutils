@@ -19,3 +19,14 @@ func MapSliceLarge(dict map[int64]int) int {
 	}
 	return result
 }
+
+func CountUint64ListWithoutZero(keyList []uint64) (dict map[uint64]int) {
+	dict = make(map[uint64]int)
+	for _, key := range keyList {
+		if key == 0 {
+			continue
+		}
+		dict[key]++
+	}
+	return dict
+}
