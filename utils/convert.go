@@ -30,19 +30,6 @@ func ConvertInterfaceToStringSlice(obj interface{}) (list []string) {
 	return list
 }
 
-func ConvertInterfaceToMap(src interface{}) (map[string]interface{}, error) {
-	marshal, err := json.Marshal(src)
-	if err != nil {
-		return nil, err
-	}
-	srcMap := make(map[string]interface{})
-	err = json.Unmarshal(marshal, &srcMap)
-	if err != nil {
-		return nil, err
-	}
-	return srcMap, nil
-}
-
 func StringSliceContainsAny(s []string, sub string) error {
 	for _, value := range s {
 		if value == sub {
@@ -50,18 +37,6 @@ func StringSliceContainsAny(s []string, sub string) error {
 		}
 	}
 	return fmt.Errorf("string slice not contain substring")
-}
-
-func UniqueSliceCheck(s []string) error {
-	m := map[string]byte{} // 存放不重复主键
-	for _, value := range s {
-		l := len(m)
-		m[value] = 0
-		if len(m) == l { // 加入map后，map长度不变化，则元素重复
-			return fmt.Errorf("slice has been repeat")
-		}
-	}
-	return nil
 }
 
 func ConvertToString(value interface{}) string {
