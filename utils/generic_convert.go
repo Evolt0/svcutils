@@ -17,6 +17,8 @@ func ConvertStringToUInteger[T ~uint | ~uint8 | ~uint16 | ~uint64](opts ...strin
 	}
 	return list, nil
 }
+
+// ConvertStringToInteger 在泛型中添加类型
 func ConvertStringToInteger[T ~int | ~int8 | ~int16 | ~int64](opts ...string) ([]T, error) {
 	list := make([]T, 0, len(opts))
 	for _, value := range opts {
