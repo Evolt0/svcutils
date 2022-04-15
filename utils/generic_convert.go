@@ -29,7 +29,7 @@ func ConvertStringToInteger[T ~int | ~int8 | ~int16 | ~int64](opts ...string) ([
 	return list, nil
 }
 
-// 在泛型中添加类型
+// ConvertInterfaceToSlice 在泛型中添加类型
 func ConvertInterfaceToSlice[T ~string](obj interface{}) (list []T) {
 	if reflect.TypeOf(obj).Kind() == reflect.Slice {
 		s := reflect.ValueOf(obj)
