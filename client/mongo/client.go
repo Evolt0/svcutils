@@ -12,7 +12,7 @@ type Client interface {
 }
 
 type ClientImpl struct {
-	Base     *mongo.Database `json:"-"`
+	base     *mongo.Database
 	Hosts    string
 	DBName   string
 	PoolSize uint64
@@ -28,8 +28,8 @@ func (c *ClientImpl) SetDefaults() {
 }
 func (c *ClientImpl) Init() {
 	c.SetDefaults()
-	c.Base = ConnectToDB(c.Hosts, c.DBName, c.PoolSize)
-	err := c.Base.Client().Ping(context.Background(), nil)
+	c.base = ConnectToDB(c.Hosts, c.DBName, c.PoolSize)
+	err := c.base.Client().Ping(context.Background(), nil)
 	if err != nil {
 		logrus.Fatalf("failed to ping: %v", err)
 	}
